@@ -1,54 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style> 
-div {
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-    background: red;
-    -webkit-animation-name: myfirst;
-    -webkit-animation-duration: 5s;
-    -webkit-animation-timing-function: linear;
-    /*-webkit-animation-delay: 2s;*/
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-direction: alternate;
-    -webkit-animation-play-state: running;
-    /* Standard syntax */
-/*    animation-name: myfirst;
-    animation-duration: 5s;
-    animation-timing-function: linear;
-    animation-delay: 2s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-play-state: running;*/
+<style>
+img{
+  position: relative;
+  opacity: 0.5;
+  -webkit-animation-name: myfirst;
+  -webkit-animation-duration: 5s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  -webkit-animation-play-state: running;
+  -webkit-transform: scale(1,1);
 }
-/* Chrome, Safari, Opera */
+
 @-webkit-keyframes myfirst {
-    from {    width: 100px;
-    height: 100px;
-    border-radius: 100px;}
-    to {    width: 200px;
-    height: 200px;
-    border-radius: 200px;}
+  from {-webkit-transform: scale(1,1);}
+  to {-webkit-transform: scale(2,2);}
 }
-
-/* Standard syntax */
-/*@keyframes myfirst {
-    from {background: red;}
-    to {    width: 500px;
-    height: 500px;
-    border-radius: 500px;}
-}*/
-
-/*div:hover {
-    width: 500px;
-    height: 500px;
-    border-radius: 500px;
-}*/
 </style>
 </head>
 <body>
-<div></div>
+<img src="mother_symbol.png">
+<img src="mother_symbol.png">
+<img src="mother_symbol.png">
+<img src="mother_symbol.png">
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<center>
+<img src="mother_symbol.png">
+</center>
 </body>
 </html>
