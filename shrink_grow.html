@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="jquery.js"></script>
+<script type="text/javascript">
+  $( document ).ready(function() {
+    var circles = 0;
+      var timer = setInterval(
+        function () {
+          if (circles < 100) {
+            var img = $('<img class="mother_symbol">'); //Equivalent: $(document.createElement('img'))
+            img.attr('src', 'mother_symbol.png');
+            var size = Math.floor(Math.random() * 6) + 3;
+            img.css({
+              "top": (Math.random () * $( window ).height()) + "px",
+              "left": (Math.random () * $( window ).width()) + "px",
+              "width": size + "%",
+              "padding": "auto"
+            });
+            img.css('opacity', 0);
+            img.appendTo('body');
+            setTimeout(function () {
+              img.animate({opacity: 0.5}, 100)
+            }, 100);
+            circles++;
+          } else {
+            clearInterval(timer);
+          }
+      }, 20);
+  });
+</script>
+
 <style>
-img{
-  position: relative;
-  opacity: 0.5;
+body{
+  background-color: #f5efdc;
+}
+img.mother_symbol{
+  position: fixed;
+  /*opacity: 0.5;*/
+  -webkit-transition: opacity 1s ease-in;
   -webkit-animation-name: myfirst;
   -webkit-animation-duration: 5s;
   -webkit-animation-timing-function: linear;
@@ -12,22 +45,25 @@ img{
   -webkit-animation-direction: alternate;
   -webkit-animation-play-state: running;
   -webkit-transform: scale(1,1);
+  /*-webkit-animation: fadein 2s;*/
 }
 
 @-webkit-keyframes myfirst {
   from {-webkit-transform: scale(1,1);}
   to {-webkit-transform: scale(2,2);}
 }
+.centered {
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+  min-width: 300px;
+  height: auto;
+  -webkit-transform: translate(-50%, -50%);
+}
 </style>
 </head>
 <body>
-<img src="mother_symbol.png">
-<img src="mother_symbol.png">
-<img src="mother_symbol.png">
-<img src="mother_symbol.png">
-<br/><br/><br/><br/><br/><br/><br/><br/>
-<center>
-<img src="mother_symbol.png">
-</center>
+  <img src="aurobindo_symbol.png" class="centered" style="z-index: 1; background-color: #f5efdc;">
 </body>
 </html>
