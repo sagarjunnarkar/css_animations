@@ -4,63 +4,80 @@
 <script src="jquery.js"></script>
 <script type="text/javascript">
   $( document ).ready(function() {
-    minX = 0, maxX = 0, minY = 0, maxY = 0;
+    screen_width = $( window ).width() - 100
+    screen_height = $( window ).height() - 100
+    mother_symbol_images = []
     function getNewPosition(){
-      x = Math.random () * $( window ).width();
-      y = Math.random () * $( window ).height();
-      if(minX == 0 && maxX == 0 && minY == 0 && maxY == 0){
-        minX = x; maxX = x; minY = y; maxY = y;
-      }
-      return [x,y];
+      x = Math.floor(Math.random () * screen_width)
+      y = Math.floor(Math.random () * screen_height)
+      return [x,y]
     }
-    var newPosition = getNewPosition();
+    newPosition = getNewPosition()
+    dimensions = dimensionOfImage()
+    function dimensionOfImage(){
+      size = Math.floor(Math.random() * 6) + 5
+      width = height = Math.floor(screen_width * size / 100)
+      return [width,height]
+    }
     drawImage();
+    mother_symbol_images.push({
+                                left:newPosition[0],
+                                top:newPosition[1],
+                                right:newPosition[0] + dimensions[0],
+                                bottom:newPosition[1]+dimensions[1]
+                              })
     function drawImage(){
+      console.log('Drawing image :)')
       var img = $('<img class="mother_symbol">');
       img.attr('src', 'mother_symbol.png');
-      var size = Math.floor(Math.random() * 6) + 3;
       img.css({
         "left": (newPosition[0]) + "px",
         "top": (newPosition[1]) + "px",
-        "width": size + "%",
-        "padding": "auto"
+        "width": (dimensions[0]) + "px",
+        "height": (dimensions[1]) + "px",
       });
-      img.css('opacity', 1);
-      width = img.appendTo('body').width();
-      maxX = width + newPosition[0];
-      maxY = width + newPosition[1];
+      img.css('opacity', 1)
+      img.appendTo('body')
     }
-    function forLoop(){
-      for (var i = 0; i > 2; i++) {
-        alert(1);
-        // newPosition = getNewPosition();
-        // alert(newPosition[0]);
-        // checkValidnessOfPosition(newPosition);
-        // drawImage();
+
+      for (var i = 0; i < 1000; i++) {
+        console.log("i : " + i)
+        newPosition = getNewPosition()
+        dimensions = dimensionOfImage()
+        newImagePostion = {
+                            left:newPosition[0], 
+                            top:newPosition[1],
+                            right:(newPosition[0] + dimensions[0]),
+                            bottom:(newPosition[1] + dimensions[1])
+                          }
+        total_symbols = mother_symbol_images.length
+        count = 0
+        $.each(mother_symbol_images, function( index, value ) {
+          console.log(index + ':' + value)
+          if(intersectRect(value,newImagePostion)){
+            console.log('intersectRect')
+            return false
+          }
+          else{
+            console.log('we can drawImage')
+            count += 1
+           }
+           //console.log(flag)
+          if(total_symbols == count){
+            drawImage()
+            mother_symbol_images.push(newImagePostion)
+            return false};
+        });
+        if($('img').length == 50){ return false}
       };
-    }
-    //check new position lies in previous circles plane
-    function checkValidnessOfPosition(newPosition){
-    if(newPosition[0] >= minX && newPosition[0] <= maxX){
-      if (newPosition[1] >= minY && newPosition[1] <= maxY) {
-        console.log('cant draw');
+      function intersectRect(r1, r2) {
+        // console.log(r1)
+        // console.log(r2)
+        return !(r2.left > r1.right || 
+        r2.right < r1.left || 
+        r2.top > r1.bottom ||
+        r2.bottom < r1.top);
       }
-      else{
-        console.log('please draw');
-        minX = (newPosition[0] > minX)? newPosition[0] : minX;
-        maxX = (newPosition[0] < maxX)? newPosition[0] : maxX;
-        minY = (newPosition[1] > minY)? newPosition[1] : minY;
-        maxY = (newPosition[1] < maxY)? newPosition[1] : maxY;
-      }
-    }
-    else{
-      console.log('please draw');
-      minX = (newPosition[0] > minX)? newPosition[0] : minX;
-      maxX = (newPosition[0] < maxX)? newPosition[0] : maxX;
-      minY = (newPosition[1] > minY)? newPosition[1] : minY;
-      maxY = (newPosition[1] < maxY)? newPosition[1] : maxY;
-    };
-    }
   });
 </script>
 
