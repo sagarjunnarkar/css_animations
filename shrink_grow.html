@@ -4,29 +4,63 @@
 <script src="jquery.js"></script>
 <script type="text/javascript">
   $( document ).ready(function() {
-    var circles = 0;
-      var timer = setInterval(
-        function () {
-          if (circles < 100) {
-            var img = $('<img class="mother_symbol">'); //Equivalent: $(document.createElement('img'))
-            img.attr('src', 'mother_symbol.png');
-            var size = Math.floor(Math.random() * 6) + 3;
-            img.css({
-              "top": (Math.random () * $( window ).height()) + "px",
-              "left": (Math.random () * $( window ).width()) + "px",
-              "width": size + "%",
-              "padding": "auto"
-            });
-            img.css('opacity', 0);
-            img.appendTo('body');
-            setTimeout(function () {
-              img.animate({opacity: 0.5}, 100)
-            }, 100);
-            circles++;
-          } else {
-            clearInterval(timer);
-          }
-      }, 20);
+    minX = 0, maxX = 0, minY = 0, maxY = 0;
+    function getNewPosition(){
+      x = Math.random () * $( window ).width();
+      y = Math.random () * $( window ).height();
+      if(minX == 0 && maxX == 0 && minY == 0 && maxY == 0){
+        minX = x; maxX = x; minY = y; maxY = y;
+      }
+      return [x,y];
+    }
+    var newPosition = getNewPosition();
+    drawImage();
+    function drawImage(){
+      var img = $('<img class="mother_symbol">');
+      img.attr('src', 'mother_symbol.png');
+      var size = Math.floor(Math.random() * 6) + 3;
+      img.css({
+        "left": (newPosition[0]) + "px",
+        "top": (newPosition[1]) + "px",
+        "width": size + "%",
+        "padding": "auto"
+      });
+      img.css('opacity', 1);
+      width = img.appendTo('body').width();
+      maxX = width + newPosition[0];
+      maxY = width + newPosition[1];
+    }
+    function forLoop(){
+      for (var i = 0; i > 2; i++) {
+        alert(1);
+        // newPosition = getNewPosition();
+        // alert(newPosition[0]);
+        // checkValidnessOfPosition(newPosition);
+        // drawImage();
+      };
+    }
+    //check new position lies in previous circles plane
+    function checkValidnessOfPosition(newPosition){
+    if(newPosition[0] >= minX && newPosition[0] <= maxX){
+      if (newPosition[1] >= minY && newPosition[1] <= maxY) {
+        console.log('cant draw');
+      }
+      else{
+        console.log('please draw');
+        minX = (newPosition[0] > minX)? newPosition[0] : minX;
+        maxX = (newPosition[0] < maxX)? newPosition[0] : maxX;
+        minY = (newPosition[1] > minY)? newPosition[1] : minY;
+        maxY = (newPosition[1] < maxY)? newPosition[1] : maxY;
+      }
+    }
+    else{
+      console.log('please draw');
+      minX = (newPosition[0] > minX)? newPosition[0] : minX;
+      maxX = (newPosition[0] < maxX)? newPosition[0] : maxX;
+      minY = (newPosition[1] > minY)? newPosition[1] : minY;
+      maxY = (newPosition[1] < maxY)? newPosition[1] : maxY;
+    };
+    }
   });
 </script>
 
@@ -37,7 +71,7 @@ body{
 img.mother_symbol{
   position: fixed;
   /*opacity: 0.5;*/
-  -webkit-transition: opacity 1s ease-in;
+  /*-webkit-transition: opacity 1s ease-in;*/
   -webkit-animation-name: myfirst;
   -webkit-animation-duration: 5s;
   -webkit-animation-timing-function: linear;
@@ -50,7 +84,7 @@ img.mother_symbol{
 
 @-webkit-keyframes myfirst {
   from {-webkit-transform: scale(1,1);}
-  to {-webkit-transform: scale(2,2);}
+  to {-webkit-transform: scale(0.5,0.5);}
 }
 .centered {
   position: fixed; /* or absolute */
