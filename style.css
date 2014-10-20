@@ -67,9 +67,9 @@ img.mother_symbol{
   transform: translate(-50%, -50%);
 }
 .mother_symbol:hover {
-    -webkit-animation: rotating 1s linear infinite;
-    -moz-animation: rotating 1s linear infinite;
-    -ms-animation: rotating 1s linear infinite;
+    -webkit-animation: rotating 10s linear infinite;
+    -moz-animation: rotating 10s linear infinite;
+    -ms-animation: rotating 10s linear infinite;
 }
 @-webkit-keyframes rotating {
     from{

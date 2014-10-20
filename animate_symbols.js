@@ -70,7 +70,12 @@ $(window).load(function() {
           }
       });
       if($('img').length == 50 || i == 999){
-        $('img.mother_symbol').fadeIn(5000);
+        mother_symbols = $('img.mother_symbol')
+        one_forth = Math.floor(mother_symbols.length/4)
+        mother_symbols.slice(0,one_forth).fadeIn(1000)
+        mother_symbols.slice(one_forth+1,one_forth*2).delay(1000).fadeIn(5000)
+        mother_symbols.slice((one_forth*2) +1,(one_forth*3)).delay(2000).fadeIn(5000)
+        mother_symbols.slice((one_forth*3) +1,(one_forth*4)).delay(3000).fadeIn(5000)
         return false;
       }
     };
