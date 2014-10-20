@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(window).load(function() {
   screen_width = $( window ).width()
   screen_height = $( window ).height()
   mother_symbol_images = []
