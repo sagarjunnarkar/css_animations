@@ -1,63 +1,8 @@
 body{
-  background-color: #f5efdc;
-}
-img.mother_symbol{
-  position: fixed;
-  /*opacity: 0.5;*/
-  /*-webkit-transition: opacity 1s ease-in;*/
-
-  -webkit-animation-name: myfirst;
-  -webkit-animation-duration: 5s;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-direction: alternate;
-  -webkit-animation-play-state: running;
-  -webkit-transform: scale(1,1);
-  /*-webkit-animation: fadein 2s;*/
-  /*moz*/
-  -moz-animation-name: myfirst;
-  -moz-animation-duration: 5s;
-  -moz-animation-timing-function: linear;
-  -moz-animation-iteration-count: infinite;
-  -moz-animation-direction: alternate;
-  -moz-animation-play-state: running;
-  -moz-transform: scale(1,1);
-  /*standard*/
-  animation-name: myfirst;
-  animation-duration: 5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-play-state: running;
-  transform: scale(1,1);
-  /*ms*/
-  -ms-animation-name: myfirst;
-  -ms-animation-duration: 5s;
-  -ms-animation-timing-function: linear;
-  -ms-animation-iteration-count: infinite;
-  -ms-animation-direction: alternate;
-  -ms-animation-play-state: running;
-  -ms-transform: scale(1,1);
-}
-
-@-webkit-keyframes myfirst {
-  from {-webkit-transform: scale(1,1);}
-  to {-webkit-transform: scale(0.5,0.5);}
-}
-@-moz-keyframes myfirst {
-  from {-moz-transform: scale(1,1);}
-  to {-moz-transform: scale(0.5,0.5);}
-}
-@keyframes myfirst {
-  from {transform: scale(1,1);}
-  to {transform: scale(0.5,0.5);}
-}
-@-ms-keyframes myfirst {
-  from {-ms-transform: scale(1,1);}
-  to {-ms-transform: scale(0.5,0.5);}
+  background-color: #C4AF96;
 }
 .centered {
-  position: fixed; /* or absolute */
+  position: fixed;
   top: 50%;
   left: 50%;
   height: auto;
@@ -66,40 +11,77 @@ img.mother_symbol{
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.mother_symbol:hover {
-    -webkit-animation: rotating 10s linear infinite;
-    -moz-animation: rotating 10s linear infinite;
-    -ms-animation: rotating 10s linear infinite;
+
+.symboldiv {
+  -webkit-animation: rotating 180s linear infinite;
+  -moz-animation: rotating 180s linear infinite;
+  -ms-animation: rotating 180s linear infinite;
+  animation: rotating 180s linear infinite;
+
 }
+
+img.mother_symbol{
+  position: fixed;
+  /*Rotate circles*/
+  -webkit-animation: rotating 60s linear infinite running;
+  -moz-animation: rotating 60s linear infinite running;
+  animation: rotating 60s linear infinite running;
+  -ms-animation: rotating 60s linear infinite running;
+  /*ZoomInOut*/
+  /*-webkit-animation: zoomInOut 5s linear infinite alternate running;
+  -moz-animation: zoomInOut 5s linear infinite alternate running;
+  animation: zoomInOut 5s linear infinite alternate running;
+  -ms-animation: zoomInOut 5s linear infinite alternate running;*/
+}
+
+/*Zoom in out*/
+@-webkit-keyframes zoomInOut {
+  from {-webkit-transform: scale(1,1); }
+  to {-webkit-transform: scale(0.5,0.5);}
+}
+@-moz-keyframes zoomInOut {
+  from {-moz-transform: scale(1,1);}
+  to {-moz-transform: scale(0.5,0.5);}
+}
+@keyframes zoomInOut {
+  from {transform: scale(1,1);}
+  to {transform: scale(0.5,0.5);}
+}
+@-ms-keyframes zoomInOut {
+  from {-ms-transform: scale(1,1);}
+  to {-ms-transform: scale(0.5,0.5);}
+}
+
+/*Rotating Circles*/
 @-webkit-keyframes rotating {
-    from{
-        -webkit-transform: rotate(0deg);
-    }
-    to{
-        -webkit-transform: rotate(360deg);
-    }
+  from{
+    -webkit-transform: rotate(0deg);
+  }
+  to{
+    -webkit-transform: rotate(360deg);
+  }
 }
 @-moz-keyframes rotating {
-    from{
-        -moz-transform: rotate(0deg);
-    }
-    to{
-        -moz-transform: rotate(360deg);
-    }
+  from{
+    -moz-transform: rotate(0deg);
+  }
+  to{
+    -moz-transform: rotate(360deg);
+  }
 }
 @keyframes rotating {
-    from{
-        transform: rotate(0deg);
-    }
-    to{
-        transform: rotate(360deg);
-    }
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
 }
 @-ms-keyframes rotating {
-    from{
-        -ms-transform: rotate(0deg);
-    }
-    to{
-        -ms-transform: rotate(360deg);
-    }
+  from{
+    -ms-transform: rotate(0deg);
+  }
+  to{
+    -ms-transform: rotate(360deg);
+  }
 }
